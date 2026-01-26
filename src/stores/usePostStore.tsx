@@ -3,7 +3,6 @@ import { useAuthStore } from './authStore'
 
 export const usePostStore = create((set) => ({
     posts: [],
-    user: ({ useAuthStore: { name: pseudo } }),
 
     addPost: (content, authorName) => set((state) => ({
         posts: [{

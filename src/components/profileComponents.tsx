@@ -1,4 +1,5 @@
-import { useAuthStore } from './stores/useAuthStore'
+import { useAuthStore } from '../stores/useAuthStore'
+
 function Profile() {
     const user = useAuthStore((state) => state.user)
     if (!user) {
@@ -6,7 +7,7 @@ function Profile() {
     }
     return (
         <div>
-            <h1>Bienvenue {user.name} !</h1>
-        </div>
+        <h1>Bienvenue { user.name } !</h1>
+            </div>
     )
 }
