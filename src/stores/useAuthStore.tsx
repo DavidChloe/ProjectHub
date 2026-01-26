@@ -1,12 +1,12 @@
 import { create } from 'zustand'
 
-interface AuthState {
+interface useAuthStore {
     user: { name: string } | null;
     login: (pseudo: string) => void;
     logout: () => void;
 }
 
-export const useAuthStore = create((set) => ({
+export const useAuthStore = create<useAuthStore>((set) => ({
     user: null, // État initial
     login: (pseudo) => set({ user: { name: pseudo } }),
     logout: () => set({ user: null }),

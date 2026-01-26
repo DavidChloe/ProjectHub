@@ -1,7 +1,20 @@
 import { create } from 'zustand'
-import { useAuthStore } from './useAuthStore'
 
-export const usePostStore = create((set) => ({
+interface Post {
+    id: number;
+    content: string;
+    author: string;
+    likes: number;
+}
+
+interface PostState {
+    posts: Post[];
+    addPost: (content: string, authorName: string) => void;
+    deletePost: (postId: number) => void;
+    likePost: (postId: number) => void;
+}
+
+export const usePostStore = create<PostState>((set) => ({
     posts: [],
 
     addPost: (content, authorName) => set((state) => ({

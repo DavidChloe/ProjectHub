@@ -1,7 +1,6 @@
-import {PostCreator} from './components/PostCreator.js'
-import Timeline from './pages/Timeline'
-import { useAuthStore } from './stores/useAuthStore'
-import {Card} from './Card'
+import {PostCreator} from './components/PostCreator.tsx'
+import {Timeline} from './pages/Timeline.tsx'
+import { useAuthStore } from './stores/useAuthStore.tsx'
 
 function Header() {
   const user = useAuthStore((s) => s.user)
@@ -20,7 +19,7 @@ function Header() {
   return (
     <div style={{padding: 20, borderBottom: '1px solid #ccc'}}>
       <h2>Personne n'est connecté</h2>
-      <button onClick={() => login()}>Se connecter</button>
+      <button onClick={() => login}>Se connecter</button>
     </div>
   )
 }
