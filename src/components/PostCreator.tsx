@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useAuthStore } from '../stores/useAuthStore'
 import { usePostStore } from '../stores/usePostStore'
 
-function PostCreator() {
+export function PostCreator() {
     const [text, setText] = useState('')
 
     const user = useAuthStore((state) => state.user)

@@ -1,6 +1,6 @@
 import { useAuthStore } from '../stores/useAuthStore'
 
-function LoginButton() {
+export function LoginButton() {
     // 1. On récupère la FONCTION 'login' depuis le store
     const login = useAuthStore((state) => state.login)
     return (
@@ -10,4 +10,4 @@ function LoginButton() {
     Se connecter
         </button>
     )
-}b
+}

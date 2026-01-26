@@ -1,6 +1,6 @@
 import { useAuthStore } from '../stores/useAuthStore'
 
-function Profile() {
+export function Profile() {
     const user = useAuthStore((state) => state.user)
     if (!user) {
         return <p>Personne n'est connecté.</p>

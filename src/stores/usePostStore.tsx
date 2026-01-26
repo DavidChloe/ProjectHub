@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { useAuthStore } from './authStore'
+import { useAuthStore } from './useAuthStore'
 
 export const usePostStore = create((set) => ({
     posts: [],

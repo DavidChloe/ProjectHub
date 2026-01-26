@@ -1,6 +1,6 @@
 import { usePostStore } from '../stores/usePostStore'
 
-function Timeline() {
+export function Timeline() {
     const posts = usePostStore((state) => state.posts)
     const likePost = usePostStore((state) => state.likePost)
     const deletePost = usePostStore((state) => state.deletePost)
