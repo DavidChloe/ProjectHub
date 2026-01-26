@@ -19,7 +19,7 @@ function Header() {
   return (
     <div style={{padding: 20, borderBottom: '1px solid #ccc'}}>
       <h2>Personne n'est connecté</h2>
-      <button onClick={() => login}>Se connecter</button>
+      <button onClick={() => login("")}>Se connecter</button>
     </div>
   )
 }
