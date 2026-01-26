@@ -1,73 +1,47 @@
-# React + TypeScript + Vite
+# 🐦 TwiterReact
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![React](https://img.shields.io/badge/React-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
 
-Currently, two official plugins are available:
+## 📋 À propos du projet
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**TwiterReact** est une application Front-End développée avec **React.js**.
+C'est un "clone" simplifié de réseau social type micro-blogging.
 
-## React Compiler
+L'objectif de ce projet est de démontrer ma maîtrise des concepts fondamentaux de React :
+* Gestion de l'état local (**State**).
+* Manipulation des **Props**.
+* Gestion des événements utilisateurs.
+* Rendu conditionnel et listes dynamiques.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+🔗 **URL du dépôt :** [https://github.com/DavidChloe/TwiterReact](https://github.com/DavidChloe/TwiterReact)
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## ✨ Fonctionnalités Actuelles
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+L'application permet actuellement de simuler les interactions principales d'un fil d'actualité :
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+* **✍️ Création de Posts :** Formulaire permettant d'ajouter un nouveau message dans le fil d'actualité en temps réel.
+* **❤️ Système de Likes :** Possibilité d'aimer ou de retirer son "J'aime" sur chaque publication (mise à jour instantanée du compteur).
+* **🗑️ Suppression :** Option pour supprimer un post du flux.
+* **📱 Interface Réactive :** Design responsive adapté mobile et desktop.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🛠️ Stack Technique
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+* **Bibliothèque :** React 18+ (Hooks: `useState`, `useEffect`)
+* **Langage :** JavaScript (ES6+)
+* **Styling :** CSS Modules / CSS 
+* **Build Tool :** Vite / Create React App
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
+
+## 🚀 Installation et Lancement
+
+Pour tester le projet sur votre machine locale :
+
+### 1. Cloner le dépôt
+```bash
+git clone [https://github.com/DavidChloe/TwiterReact.git](https://github.com/DavidChloe/TwiterReact.git)
+cd TwiterReact
