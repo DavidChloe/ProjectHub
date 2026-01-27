@@ -3,7 +3,7 @@ import { Heart, TrashIcon  } from 'lucide-react';
 import { usePostStore } from '../stores/usePostStore'
 
 export function Timeline() {
-    const posts = usePostStore((state) => state.posts)
+    const posts = usePostStore((state) => state.Post)
     const fetchPosts = usePostStore((state) => state.fetchPosts)
     const likePost = usePostStore((state) => state.likePost)
     const deletePost = usePostStore((state) => state.deletePost)

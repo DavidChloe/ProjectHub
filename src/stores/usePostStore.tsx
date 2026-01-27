@@ -21,7 +21,7 @@ export const usePostStore = create<PostState>((set) => ({
 
     fetchPosts: async () => {
         const { data, error } = await supabase
-            .from('posts')
+            .from('Post')
             .select('*')
             .order('id', { ascending: false })
 
@@ -36,7 +36,7 @@ export const usePostStore = create<PostState>((set) => ({
             likes: 0
         }
         const { data, error } = await supabase
-            .from('posts')
+            .from('Post')
             .insert([newPost])
             .select()
 
@@ -48,7 +48,7 @@ export const usePostStore = create<PostState>((set) => ({
 
     deletePost: async (postId: number) => {
         const { error } = await supabase
-            .from('posts')
+            .from('Post')
             .delete()
             .eq('id', postId)
 
@@ -61,7 +61,7 @@ export const usePostStore = create<PostState>((set) => ({
     },
     likePost: async (postId, currentLikes) => {
         const { error } = await supabase
-            .from('posts')
+            .from('Post')
             .update({ likes: currentLikes + 1 })
             .eq('id', postId)
 
