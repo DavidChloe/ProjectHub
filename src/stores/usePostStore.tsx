@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { supabase } from '../supabaseClient'
+import { supabase } from '../supabaseClient.ts'
 
 interface Post {
     id: number;
@@ -13,7 +13,7 @@ interface PostState {
     fetchPosts: () => Promise<void>;
     addPost: (content: string, authorName: string) => void;
     deletePost: (postId: number) => void;
-    likePost: (postId: number) => void;
+    likePost: (postId: number, currentLikes: number) => Promise<void>;
 }
 
 export const usePostStore = create<PostState>((set) => ({
@@ -23,16 +23,16 @@ export const usePostStore = create<PostState>((set) => ({
         const { data, error } = await supabase
             .from('posts')
             .select('*')
-            .order('id', { ascending: false }) // Les plus récents en haut
+            .order('id', { ascending: false })
 
         if (error) console.error('Erreur fetch:', error)
         else set({ posts: data as Post[] || [] })
     },
 
-    addPost: async (content, authorName) => {
+    addPost: async (content: string, author: string) => {
         const newPost = {
             content,
-            author_name: authorName,
+            author: author,
             likes: 0
         }
         const { data, error } = await supabase
@@ -41,13 +41,12 @@ export const usePostStore = create<PostState>((set) => ({
             .select()
 
         if (error) console.error('Erreur ajout:', error)
-        else {
-            // On met à jour l'état local avec le post renvoyé par la BDD (qui contient l'ID)
+        else if (data) {
             set((state) => ({ posts: [data[0] as Post, ...state.posts] }))
         }
     },
 
-    deletePost: async (postId) => {
+    deletePost: async (postId: number) => {
         const { error } = await supabase
             .from('posts')
             .delete()

@@ -1,6 +1,6 @@
 import './index.css';
 import { useState } from 'react';
-import { Heart, MessageCircle , Download, Bookmark, Icon, BoxIcon, EyeIcon, Box  } from 'lucide-react';
+import { Heart, MessageCircle , Download, Bookmark } from 'lucide-react';
 
 
 export function Card() {

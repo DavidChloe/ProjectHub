@@ -14,15 +14,14 @@ export function Timeline() {
 
     return (
         <div>
-            {posts.length === 0 ? <p>Cargement, aucun post pour le moment ...</p> : null}
+            {posts.length === 0 ? <p>Chargement, aucun post pour le moment ...</p> : null}
 
             {posts.map((post) => (
                 <div key={post.id} style={{ border: '1px solid #ccc', margin: '10px 0', padding: '10px' }}>
-                    <h4>@{post.author_name}</h4> {/* Attention au nom de la propriété */}
+                    <h4>@{post.author}</h4>
                     <p>{post.content}</p>
 
                     <div style={{ display: 'flex', gap: '10px' }}>
-                        {/* On passe post.likes à la fonction likePost */}
                         <button onClick={() => likePost(post.id, post.likes)}>
                             <Heart /> {post.likes}
                         </button>
