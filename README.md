@@ -42,3 +42,7 @@ Pour exécuter ProjectHub localement, vous devez configurer votre propre instanc
 ```bash
 git clone [https://github.com/DavidChloe/ProjectHub.git](https://github.com/DavidChloe/ProjectHub.git)
 cd ProjectHub
+
+### 2. Installer les dépendances
+```bash
+npm install
