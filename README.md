@@ -1,10 +1,10 @@
-# 🐦 TwiterReact
+# 🐦 TwitterReact
 
 ![React](https://img.shields.io/badge/React-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
 
 ## 📋 À propos du projet
 
-**TwiterReact** est une application Front-End développée avec **React.js**.
+**TwitterReact** est une application Front-End développée avec **React.js**.
 C'est un "clone" simplifié de réseau social type micro-blogging.
 
 L'objectif de ce projet est de démontrer ma maîtrise des concepts fondamentaux de React :
@@ -13,7 +13,7 @@ L'objectif de ce projet est de démontrer ma maîtrise des concepts fondamentaux
 * Gestion des événements utilisateurs.
 * Rendu conditionnel et listes dynamiques.
 
-🔗 **URL du dépôt :** [https://github.com/DavidChloe/TwiterReact](https://github.com/DavidChloe/TwiterReact)
+🔗 **URL du dépôt :** [https://github.com/DavidChloe/TwitterReact](https://github.com/DavidChloe/TwitterReact)
 
 ---
 
@@ -43,5 +43,5 @@ Pour tester le projet sur votre machine locale :
 
 ### 1. Cloner le dépôt
 ```bash
-git clone [https://github.com/DavidChloe/TwiterReact.git](https://github.com/DavidChloe/TwiterReact.git)
-cd TwiterReact
+git clone [https://github.com/DavidChloe/TwitterReact.git](https://github.com/DavidChloe/TwitterReact.git)
+cd TwitterReact
