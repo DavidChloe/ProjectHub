@@ -22,9 +22,8 @@ L'objectif de ce projet est de démontrer ma maîtrise des concepts fondamentaux
 L'application permet actuellement de simuler les interactions principales d'un fil d'actualité :
 
 * **✍️ Création de Posts :** Formulaire permettant d'ajouter un nouveau message dans le fil d'actualité en temps réel.
-* **❤️ Système de Likes :** Possibilité d'aimer ou de retirer son "J'aime" sur chaque publication (mise à jour instantanée du compteur).
+* **❤️ Système de Likes :** Possibilité d'aimer chaque publication (mise à jour instantanée du compteur).
 * **🗑️ Suppression :** Option pour supprimer un post du flux.
-* **📱 Interface Réactive :** Design responsive adapté mobile et desktop.
 
 ---
 
