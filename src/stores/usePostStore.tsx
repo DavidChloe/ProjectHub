@@ -7,6 +7,7 @@ interface Post {
     author: string;
     author_id: number;
     likes: number;
+    datePost: Date;
 }
 
 interface PostState {
@@ -24,7 +25,7 @@ export const usePostStore = create<PostState>((set) => ({
         const { data, error } = await supabase
             .from('Post')
             .select('*')
-            .order('id', { ascending: false })
+            .order('datePost', { ascending: false })
 
         if (error) console.error('Erreur fetch:', error)
         else set({ posts: data as Post[] || [] })
@@ -33,8 +34,7 @@ export const usePostStore = create<PostState>((set) => ({
     addPost: async (content: string, authorId: number) => {
         const newPost = {
             content,
-            authorId: authorId,
-            likes: 0
+            authorId: authorId
         }
         const { data, error } = await supabase
             .from('Post')

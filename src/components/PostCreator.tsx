@@ -18,7 +18,7 @@ export function PostCreator() {
     if (!user) return null
 
     return (
-        <div style={{ marginBottom: '20px', border: '1px solid #ddd', padding: '10px' }}>
+        <div style={{ marginBottom: '20px', border: '1px solid #838282', padding: '10px' }}>
             <h3>Bonjour {user.name} ?</h3>
             <textarea
                 value={text}
