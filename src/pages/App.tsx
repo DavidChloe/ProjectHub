@@ -48,9 +48,6 @@ function Header() {
         <button onClick={handleLogin} style={{ padding: '8px 16px' }}>
           Se connecter
         </button>
-        <button onClick={handleLogin} style={{ padding: '8px 16px' }}>
-          Créer un compte
-        </button>
       </div>
     </div>
   )

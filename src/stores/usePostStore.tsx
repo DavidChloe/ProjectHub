@@ -4,8 +4,8 @@ import { supabase } from '../supabaseClient.ts'
 interface Post {
     id: number;
     content: string;
-    author: string;
-    author_id: number;
+    authorName: string;
+    authorId: number;
     likes: number;
     datePost: Date;
 }
@@ -13,7 +13,7 @@ interface Post {
 interface PostState {
     posts: Post[];
     fetchPosts: () => Promise<void>;
-    addPost: (content: string, authorId: number, authorPseudo: string) => Promise<void>;
+    addPost: (content: string, authorId: number, authorName: string) => Promise<void>;
     deletePost: (postId: number) => void;
     likePost: (postId: number, currentLikes: number) => Promise<void>;
 }
@@ -24,7 +24,7 @@ export const usePostStore = create<PostState>((set) => ({
     fetchPosts: async () => {
         const { data, error } = await supabase
             .from('Post')
-            .select('*')
+            .select('*, User!Post_authorId_fkey(pseudo)')
             .order('datePost', { ascending: false })
 
         if (error)
@@ -32,15 +32,15 @@ export const usePostStore = create<PostState>((set) => ({
         else {
             const mappedPosts = data.map((post: any) => ({
                 ...post,
-                author: post.User?.pseudo || 'Anonyme',
-                author_id: post.author_id
+                authorName: post.User?.pseudo || 'Anonyme',
+                authorId: post.authorId
             }))
 
             set({ posts: mappedPosts as Post[] })
         }
     },
 
-    addPost: async (content: string, authorId: number, authorPseudo: string) => {
+    addPost: async (content: string, authorId: number, authorName: string) => {
         const newPost = {
             content,
             authorId: authorId
@@ -50,11 +50,13 @@ export const usePostStore = create<PostState>((set) => ({
             .insert([newPost])
             .select()
 
-        if (error) console.error('Erreur ajout:', error)
+        if (error) 
+            console.error('Erreur ajout:', error)
         else if (data) {
             const newPostLocal: Post = {
                 ...data[0],
-                author_id: authorId
+                authorId: authorId,
+                authorName: authorName,
             }
 
             set((state) => ({ posts: [newPostLocal, ...state.posts] }))

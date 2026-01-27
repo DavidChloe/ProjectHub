@@ -18,7 +18,7 @@ export function Timeline() {
 
             {posts.map((post) => (
                 <div key={post.id} style={{ border: '1px solid #ccc', margin: '10px 0', padding: '10px' }}>
-                    <h4>@{post.author}</h4>
+                    <h4>@{post.authorName}</h4>
                     <p>{post.content}</p>
                     <p style={{ fontSize: '0.8em', color: '#666' }}>
                         {new Date(post.datePost).toLocaleString('fr-FR')}
