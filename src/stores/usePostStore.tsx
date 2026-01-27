@@ -13,7 +13,7 @@ interface Post {
 interface PostState {
     posts: Post[];
     fetchPosts: () => Promise<void>;
-    addPost: (content: string, authorId: number) => void;
+    addPost: (content: string, authorId: number, authorPseudo: string) => Promise<void>;
     deletePost: (postId: number) => void;
     likePost: (postId: number, currentLikes: number) => Promise<void>;
 }
@@ -27,11 +27,20 @@ export const usePostStore = create<PostState>((set) => ({
             .select('*')
             .order('datePost', { ascending: false })
 
-        if (error) console.error('Erreur fetch:', error)
-        else set({ posts: data as Post[] || [] })
+        if (error)
+            console.error('Erreur fetch:', error)
+        else {
+            const mappedPosts = data.map((post: any) => ({
+                ...post,
+                author: post.User?.pseudo || 'Anonyme',
+                author_id: post.author_id
+            }))
+
+            set({ posts: mappedPosts as Post[] })
+        }
     },
 
-    addPost: async (content: string, authorId: number) => {
+    addPost: async (content: string, authorId: number, authorPseudo: string) => {
         const newPost = {
             content,
             authorId: authorId
@@ -43,7 +52,12 @@ export const usePostStore = create<PostState>((set) => ({
 
         if (error) console.error('Erreur ajout:', error)
         else if (data) {
-            set((state) => ({ posts: [data[0] as Post, ...state.posts] }))
+            const newPostLocal: Post = {
+                ...data[0],
+                author_id: authorId
+            }
+
+            set((state) => ({ posts: [newPostLocal, ...state.posts] }))
         }
     },
 

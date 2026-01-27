@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { Heart, TrashIcon  } from 'lucide-react';
+import { Heart, TrashIcon } from 'lucide-react';
 import { usePostStore } from '../stores/usePostStore'
 
 export function Timeline() {
@@ -20,12 +20,15 @@ export function Timeline() {
                 <div key={post.id} style={{ border: '1px solid #ccc', margin: '10px 0', padding: '10px' }}>
                     <h4>@{post.author}</h4>
                     <p>{post.content}</p>
+                    <p style={{ fontSize: '0.8em', color: '#666' }}>
+                        {new Date(post.datePost).toLocaleString('fr-FR')}
+                    </p>
 
                     <div style={{ display: 'flex', gap: '10px' }}>
                         <button onClick={() => likePost(post.id, post.likes)}>
                             <Heart /> {post.likes}
                         </button>
-                        
+
                         <button onClick={() => deletePost(post.id)}>
                             <TrashIcon /> Supprimer
                         </button>

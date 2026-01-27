@@ -5,13 +5,13 @@ interface User {
     id: number;
     name: string;
     pseudo: string;
-    //profilPicture: string;
+    profilcture: string;
 }
 
 interface AuthState {
     user: User | null;
     login: (pseudo: string) => Promise<void>;
-    logout: ()=> void;
+    logout: () => void;
 }
 
 export const useAuthStore = create<AuthState>((set) => ({
@@ -33,9 +33,9 @@ export const useAuthStore = create<AuthState>((set) => ({
                 set({ user: userExiste as User })
             } else {
                 console.log("Création d'un nouvel utilisateur")
-                
-                const newUser = { 
-                    pseudo: pseudoInput, 
+
+                const newUser = {
+                    pseudo: pseudoInput,
                     name: pseudoInput
                 }
 
@@ -46,7 +46,7 @@ export const useAuthStore = create<AuthState>((set) => ({
                     .single()
 
                 if (createError) throw createError
-                
+
                 if (createdUser) {
                     set({ user: createdUser as User })
                 }
