@@ -5,13 +5,14 @@ interface Post {
     id: number;
     content: string;
     author: string;
+    author_id: number;
     likes: number;
 }
 
 interface PostState {
     posts: Post[];
     fetchPosts: () => Promise<void>;
-    addPost: (content: string, authorName: string) => void;
+    addPost: (content: string, authorId: number) => void;
     deletePost: (postId: number) => void;
     likePost: (postId: number, currentLikes: number) => Promise<void>;
 }
@@ -29,10 +30,10 @@ export const usePostStore = create<PostState>((set) => ({
         else set({ posts: data as Post[] || [] })
     },
 
-    addPost: async (content: string, author: string) => {
+    addPost: async (content: string, authorId: number) => {
         const newPost = {
             content,
-            author: author,
+            authorId: authorId,
             likes: 0
         }
         const { data, error } = await supabase

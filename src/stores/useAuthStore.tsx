@@ -1,14 +1,25 @@
 import { create } from 'zustand'
+import { supabase } from '../supabaseClient.ts'
 
-interface useAuthStore {
-    user: { name: string } | null;
-    login: (pseudo: string) => void;
-    logout: () => void;
+interface User {
+    id: number;
+    name: string;
+    pseudo: string;
+    profilPicture: string;
 }
 
-export const useAuthStore = create<useAuthStore>((set) => ({
-    user: null, 
-    login: (pseudo) => set({ user: { name: pseudo } }),
+interface AuthState {
+    user: User[];
+    login: (pseudo: string, id: number) => void;
+    logout: (user: string) => void;
+}
+
+export const useAuthStore = create<AuthState>((set) => ({
+    user: [],
+    login: (pseudo) => {
+        const fakeId = "user_" + Date.now()
+        set({ user: { id: 1, name: pseudo } })
+    },
     logout: () => set({ user: null }),
 }))
 
