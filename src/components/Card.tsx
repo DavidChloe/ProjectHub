@@ -1,4 +1,4 @@
-import './index.css';
+import './asset/index.css';
 import { useState } from 'react';
 import { Heart, MessageCircle , Download, Bookmark } from 'lucide-react';
 

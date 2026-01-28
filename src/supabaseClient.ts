@@ -1,6 +1,11 @@
-import { createClient } from '@supabase/supabase-js'
 
-const supabaseUrl = 'https://gvtmytjapghdnuamvvkp.supabase.co'
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd2dG15dGphcGdoZG51YW12dmtwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk0MzY1MjksImV4cCI6MjA4NTAxMjUyOX0.ZQtj3CfPNtKvJRYbYQTWd9HwzamoQyl0uBQ632J3lvs'
+import { createClient } from "@supabase/supabase-js";
 
-export const supabase = createClient(supabaseUrl, supabaseKey)
+const supabaseUrl = process.env.REACT_APP_SUPABASE_URL;
+const supabaseKey = process.env.REACT_APP_SUPABASE_PUBLISHABLE_DEFAULT_KEY;
+
+if (!supabaseUrl || !supabaseKey) {
+  throw new Error("Les variables d'environnement Supabase sont manquantes")
+}
+
+export const supabase = createClient(supabaseUrl, supabaseKey);
