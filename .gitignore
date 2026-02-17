@@ -25,3 +25,10 @@ dist-ssr
 
 # Fichiers de clé API
 .env.local
+
+# The old project who serve has a reference
+src/an_old_project/Card.tsx
+src/an_old_project/loginButtonComponent.tsx
+src/an_old_project/PostCreator.tsx
+src/an_old_project/profileComponents.tsx
+src/an_old_project/Timeline.tsx

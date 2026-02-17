@@ -1,0 +1,40 @@
+:root {
+  /* Couleurs de la charte ProjectHub */
+  /* --- Colors Principales --- */
+  --color-primary-red: #D32F2F;
+  --color-primary-white: #ffffff;
+  --color-text-main: #000000;
+  
+  /* --- Fonds --- */
+  --color-bg-white: #FFFFFF;
+  --color-bg-light: #E0E0E0;
+  --color-bg-input-gray: #EEEEEE;
+  
+  /* Style Button */
+  --color-btn-bg: #90CAF9;
+  --color-btn-bg-grey: #8b8b8b;
+  --color-btn-green: #00E676;
+  --color-btn-orange: #FF9100;
+  --color-btn-text: #4d4c4c;
+  
+  /* Avatar */
+  --color-avatar-brown: #5D4037;
+
+  /* Arrondis */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-pill: 50px;
+  --shadow-card: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  /* Size font */
+  --size-font-button: 12px;
+  --size-font-button: 14px;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: var(--color-bg-white);
+}
