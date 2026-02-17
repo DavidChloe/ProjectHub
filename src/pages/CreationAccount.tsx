@@ -28,7 +28,7 @@ const CreationAccount: React.FC = () => {
     setError(null);
     setLoading(true);
 
-    const { data, error } = await supabase.auth.signUp({
+    const { error } = await supabase.auth.signUp({
       email,
       password,
       options: {
