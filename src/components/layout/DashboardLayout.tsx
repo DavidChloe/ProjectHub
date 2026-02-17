@@ -15,10 +15,10 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
   };
 
   const mainContentStyle: React.CSSProperties = {
-    flex: 1, //1 pour full place restante
+    flex: 1,
     display: 'flex',
     flexDirection: 'column',
-    overflowY: 'auto', //scroll intern
+    overflowY: 'auto',
     backgroundColor: 'var(--color-bg-white)'
   };
 

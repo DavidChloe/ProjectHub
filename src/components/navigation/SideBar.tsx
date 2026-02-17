@@ -1,11 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router';
+import { useAuth } from '../../context/AuthContext';
 
 const SideBar: React.FC = () => {
+  const { session } = useAuth();
+  const isUserConnected = !!session;
+
+
   const sidebarStyle: React.CSSProperties = {
     width: '250px',
     height: '100vh',
-    backgroundColor: 'var(--color-bg-light)', // Le gris défini dans variables.css
+    backgroundColor: 'var(--color-bg-light)',
     padding: '20px',
     boxSizing: 'border-box',
     display: 'flex',
@@ -29,13 +34,19 @@ const SideBar: React.FC = () => {
   return (
     <aside style={sidebarStyle}>
       <div style={{ marginBottom: '40px', fontWeight: 'bold' }}>Menu</div>
-      
+      {isUserConnected ? (
+        <nav>
+          <Link to="/" style={linkStyle}>Accueil</Link>
+          <Link to="/edit_user" style={linkStyle}>Paramètres</Link>
+        </nav>
+      ) : ( 
       <nav>
-        <Link to="/" style={linkStyle}>Accueil</Link>
-        <Link to="/edit_user" style={linkStyle}>Paramètres</Link>
-      </nav>
-    </aside>
+          <Link to="/" style={linkStyle}>Accueil</Link>
+        </nav>
+      )}
+      </aside>
   );
+    
 };
 
 export default SideBar;

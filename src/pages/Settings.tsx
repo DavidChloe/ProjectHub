@@ -1,34 +1,76 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { supabase } from '../supabaseClient';
 import DashboardLayout from '../components/layout/DashboardLayout';
 import Avatar from '../components/ui/Avatar';
 import Input from '../components/ui/Input';
 import Button from '../components/ui/Button';
 
 const Settings: React.FC = () => {
-  
-  // --- Styles du Conteneur Principal ---
+  const [loading, setLoading] = useState(true);
+  const [message, setMessage] = useState<{ text: string, type: 'success' | 'error' } | null>(null);
+  const [pseudo, setPseudo] = useState('');
+  const [fullName, setFullName] = useState('');
+  const [password, setPassword] = useState('');
+
+  useEffect(() => {
+    const getUserData = async () => {
+      const { data: { user } } = await supabase.auth.getUser();
+
+      if (user) {
+        setPseudo(user.user_metadata?.username || '');
+        setFullName(user.user_metadata?.full_name || '');
+      }
+      setLoading(false);
+    };
+
+    getUserData();
+  }, []);
+
+  const handleUpdate = async () => {
+    setMessage(null);
+    
+    const updates: any = {
+      data: {
+        username: pseudo,
+        full_name: fullName,
+      }
+    };
+
+    if (password.length > 0) {
+      updates.password = password;
+    }
+
+    const { error } = await supabase.auth.updateUser(updates);
+
+    if (error) {
+      setMessage({ text: "Erreur : " + error.message, type: 'error' });
+    } else {
+      setMessage({ text: "Profil mis à jour avec succès !", type: 'success' });
+      setPassword('');
+    }
+  };
+
   const pageContainerStyle: React.CSSProperties = {
     display: 'flex',
     justifyContent: 'center',
-    paddingTop: '40px', // Un peu d'espace par rapport au haut
+    paddingTop: '40px',
   };
 
   const cardStyle: React.CSSProperties = {
     width: '100%',
-    maxWidth: '500px', // On limite la largeur pour que ça ressemble à la maquette
+    maxWidth: '500px',
     backgroundColor: 'var(--color-bg-white)',
-    boxShadow: '0 4px 10px rgba(0,0,0,0.1)', // Ombre douce
+    boxShadow: '0 4px 10px rgba(0,0,0,0.1)',
     borderRadius: 'var(--radius-md)',
-    overflow: 'hidden', // Pour que l'en-tête gris ne dépasse pas des coins arrondis
+    overflow: 'hidden',
   };
 
-  // --- Styles de l'En-tête (Zone grise avec Avatar) ---
   const headerStyle: React.CSSProperties = {
-    backgroundColor: '#E0E0E0', // Gris plus foncé que le fond de page
+    backgroundColor: '#E0E0E0',
     padding: '40px',
     display: 'flex',
     alignItems: 'center',
-    gap: '20px' // Espace entre Avatar et Nom
+    gap: '20px'
   };
 
   const userNameStyle: React.CSSProperties = {
@@ -37,7 +79,6 @@ const Settings: React.FC = () => {
     margin: 0
   };
 
-  // --- Styles du Formulaire ---
   const formSectionStyle: React.CSSProperties = {
     padding: '30px',
     display: 'flex',
@@ -45,11 +86,18 @@ const Settings: React.FC = () => {
     gap: '10px'
   };
 
-  // Sur cette maquette, les inputs ont un fond gris spécifique
   const grayInputStyle: React.CSSProperties = {
     backgroundColor: '#EEEEEE', 
     fontWeight: 600
   };
+
+  if (loading) {
+    return (
+      <DashboardLayout>
+        <div style={{ padding: 40, textAlign: 'center' }}>Chargement de vos infos...</div>
+      </DashboardLayout>
+    );
+  }
 
   return (
     <DashboardLayout>
@@ -58,40 +106,56 @@ const Settings: React.FC = () => {
         <div style={cardStyle}>
           
           <div style={headerStyle}>
-            <Avatar size={80} initials="" />
-            <h2 style={userNameStyle}>Pseudo user</h2>
+            <Avatar size={80} initials={pseudo.substring(0, 2).toUpperCase() || ''} />
+            <h2 style={userNameStyle}>{pseudo || 'Utilisateur'}</h2>
           </div>
 
           <div style={formSectionStyle}>
             
+            {message && (
+              <div style={{ 
+                padding: '10px', 
+                borderRadius: '4px', 
+                backgroundColor: message.type === 'success' ? 'var(--color-btn-green)' : 'var(--color-primary-red)',
+                color: message.type === 'success' ? 'var(--color-primary-white)' : 'var(--color-primary-white)',
+                marginBottom: '10px',
+                textAlign: 'center'
+              }}>
+                {message.text}
+              </div>
+            )}
+
             <Input 
               label="Changer pseudo" 
-              placeholder="Pseudo User" 
-              defaultValue="Pseudo User"
+              placeholder="Votre pseudo" 
+              value={pseudo}
+              onChange={(e) => setPseudo(e.target.value)}
               style={grayInputStyle}
             />
             
             <Input 
               label="Changer Nom" 
-              placeholder="Nom User" 
-              defaultValue="Nom User"
+              placeholder="Votre nom complet" 
+              value={fullName}
+              onChange={(e) => setFullName(e.target.value)}
               style={grayInputStyle}
             />
             
             <Input 
               label="Changer mot de passe" 
-              placeholder="Mot de passe" 
+              placeholder="Laisser vide pour ne pas changer" 
               type="password"
-              defaultValue="********"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               style={grayInputStyle}
             />
 
             <div style={{ marginTop: '20px', display: 'flex', flexDirection: 'column', gap: '15px' }}>
-              <Button variant="success" fullWidth>
+              <Button variant="success" fullWidth onClick={handleUpdate}>
                 Valider
               </Button>
               
-              <Button variant="warning" fullWidth>
+              <Button variant="warning" fullWidth onClick={() => window.location.reload()}>
                 Annuler
               </Button>
             </div>

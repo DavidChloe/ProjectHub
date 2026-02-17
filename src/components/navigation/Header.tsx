@@ -1,11 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router';
+import { useAuth } from '../../context/AuthContext';
 import Avatar from '../ui/Avatar';
 import Button from '../ui/Button';
 
 const Header: React.FC = () => {
   const navigate = useNavigate();
-  const [isUserConnected, setIsUserConnected] = useState(true);
+  const { session, signOut } = useAuth();
+
+  const handleLogout = async () => {
+    await signOut();
+    navigate('/connection');
+  };
+
+  const isUserConnected = !!session;
 
   const headerStyle: React.CSSProperties = {
     width: '100%',
@@ -30,11 +38,6 @@ const Header: React.FC = () => {
     gap: '15px'
   };
 
-  const handleLogout = () => {
-    setIsUserConnected(false);
-    navigate('/connection');
-  };
-
   return (
     <header style={headerStyle}>
       <h1 style={titleStyle}>Project Hub</h1>
@@ -47,7 +50,7 @@ const Header: React.FC = () => {
             </Button>
             
             <Avatar 
-              initials="PU" 
+              initials="" 
               size={45} 
               onClick={() => navigate('/edit_user')} 
             />

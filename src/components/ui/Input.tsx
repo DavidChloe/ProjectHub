@@ -22,7 +22,7 @@ const Input: React.FC<InputProps> = ({ label, fullWidth = true, style, ...props 
   const inputStyle: React.CSSProperties = {
     width: '100%',
     padding: '12px 16px',
-    backgroundColor: 'var(--color-bg-white)', // Par défaut blanc
+    backgroundColor: 'var(--color-bg-white)',
     border: 'none',
     borderRadius: 'var(--radius-sm)',
     fontSize: '14px',
